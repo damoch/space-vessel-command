@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Game.State.Abstracts;
+﻿using Assets.Scripts.Game.Controllers.Enums;
+using Assets.Scripts.Game.State.Abstracts;
 using System.Text;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace Assets.Scripts.Game.State.Implementations
         {
 
         }
+
+        public GamePlayState GamePlayState { get; set; }
 
         public string GetAboutString()
         {
