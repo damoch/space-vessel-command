@@ -9,7 +9,7 @@ namespace Assets.Scripts.Game.State.Implementations
     {
         public GameState()
         {
-
+            GamePlayState = GamePlayState.GamePhase;
         }
 
         public GamePlayState GamePlayState { get; set; }

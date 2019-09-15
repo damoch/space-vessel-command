@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Game.Controllers.Abstractions
 {
-    interface IGameController
+    public interface IGameController
     {
         IGameState GameState { get; set; }
         void Initialize();

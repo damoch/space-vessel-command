@@ -24,7 +24,7 @@ namespace Assets.Scripts.Game.Controllers.Implementations
         {
             GameState = new GameState();
             Debug.Log(GameState.GetAboutString());
-            _gameUiScreenController.OnGameplayPhaseChange(GameState.GamePlayState);
+            EnterCommandState();
         }
 
         public void EnterCommandState()
