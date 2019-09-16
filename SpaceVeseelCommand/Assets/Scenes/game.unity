@@ -384,6 +384,8 @@ MonoBehaviour:
   _teamCode: 0
   _teamName: Humans
   _alliedTeams: []
+  _units:
+  - {fileID: 942201246}
 --- !u!4 &599960545
 Transform:
   m_ObjectHideFlags: 0

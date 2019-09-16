@@ -10,6 +10,8 @@ namespace Assets.Scripts.Game.CombatEngine.Implementation
         [SerializeField]
         private GameController _gameController;
 
+
+        private ITeam _team;
         private MovementComponent _movementComponent;
 
         public IGameController GameController => _gameController;
@@ -26,6 +28,11 @@ namespace Assets.Scripts.Game.CombatEngine.Implementation
         public void OnTargetReached()
         {
             
+        }
+
+        public void SetUpTeam(ITeam team)
+        {
+            _team = team;
         }
     }
 }

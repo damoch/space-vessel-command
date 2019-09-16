@@ -6,7 +6,7 @@ namespace Assets.Scripts.Game.CombatEngine.Abstractions
     {
         TeamCode TeamCode { get; set; }
         string TeamName { get; set; }
-
         ITeam[] AlliedTeams { get;  }
+        void OnUnitDeath(IUnit unit);
     }
 }
