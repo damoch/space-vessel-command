@@ -4,7 +4,7 @@ namespace Assets.Scripts.Game.CombatEngine.Abstractions
 {
     public interface IMovableEntity
     {
-        void OnTargetReached();
+        void OnMoveComponentTargetReached();
         IGameController GameController { get; }
     }
 }

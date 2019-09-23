@@ -25,6 +25,9 @@ namespace Assets.Scripts.Game.CombatEngine.Implementation
         [SerializeField]
         private GameController _gameController;
 
+        [SerializeField]
+        private Order[] _testOrder;
+
         public TeamCode TeamCode { get => _teamCode; set => _teamCode = value; }
         public string TeamName { get => _teamName; set => _teamName = value; }
         public ITeam[] AlliedTeams { get => _alliedTeams; }
@@ -33,6 +36,7 @@ namespace Assets.Scripts.Game.CombatEngine.Implementation
         private void Start()
         {
             Initialize();
+            SendOrderToUnit();
         }
 
         private void Initialize()
@@ -51,6 +55,19 @@ namespace Assets.Scripts.Game.CombatEngine.Implementation
         public bool UnitBelongsToTeam(IUnit unit)
         {
            return _units.Contains((Unit)unit);
+        }
+
+        public bool ParseOrder()
+        {
+            return SendOrderToUnit();
+        }
+
+        private bool SendOrderToUnit()
+        {
+            //order test code
+            _units[0].ReceiveOrder(_testOrder[1]);
+            _units[0].ReceiveOrder(_testOrder[0]);
+            return true;
         }
     }
 }

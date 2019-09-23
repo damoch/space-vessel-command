@@ -3,5 +3,6 @@
     public interface IUnit
     {
         void SetUpTeam(ITeam team);
+        void ReceiveOrder(IOrder order);
     }
 }

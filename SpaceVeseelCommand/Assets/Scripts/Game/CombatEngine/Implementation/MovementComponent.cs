@@ -28,7 +28,7 @@ namespace Assets.Scripts.Game.CombatEngine.Implementation
         {
             if(!_targetReached && _movableEntity.GameController.GameState.GamePlayState == Controllers.Enums.GamePlayState.GamePhase)
             {
-                transform.Translate(_currentTarget * _speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, _currentTarget, _speed * Time.deltaTime);
 
 
                 if (Vector2.Distance(transform.position, _currentTarget) <= _minimalDistance)
@@ -40,6 +40,8 @@ namespace Assets.Scripts.Game.CombatEngine.Implementation
 
         public bool SetMovementTarget(Vector2 target)
         {
+            _currentTarget = target;
+            _targetReached = false;
             Debug.Log("New target");
             return false;
         }
@@ -47,7 +49,7 @@ namespace Assets.Scripts.Game.CombatEngine.Implementation
         public void TragetReached()
         {
             _targetReached = true;
-            Debug.Log("Target reached");
+            _movableEntity.OnMoveComponentTargetReached();
         }
 
         public void SetParentEntity(IMovableEntity entity)
