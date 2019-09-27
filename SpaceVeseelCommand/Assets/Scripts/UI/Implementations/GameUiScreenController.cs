@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Game.Controllers.Enums;
+﻿using Assets.Scripts.Game.CombatEngine.Implementation;
+using Assets.Scripts.Game.Controllers.Enums;
 using Assets.Scripts.Game.Controllers.Implementations;
 using Assets.Scripts.UI.Abstracts;
 using UnityEngine;
@@ -22,6 +23,9 @@ namespace Assets.Scripts.UI.Implementations
 
         [SerializeField]
         private GameController _gameController;
+
+        [SerializeField]
+        private HumanPlayer _humanPlayer;
 
         public void ChangeGameplayPhaseButtonClick()
         {

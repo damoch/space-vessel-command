@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Game.CombatEngine.Abstractions;
 using Assets.Scripts.Game.CombatEngine.Enums;
 using Assets.Scripts.Game.Controllers.Abstractions;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,12 +8,16 @@ namespace Assets.Scripts.Game.CombatEngine.Implementation
 {
     public class Unit : MonoBehaviour, IUnit, IMovableEntity
     {
+        [SerializeField]
+        private string _codeName;
+
         private ITeam _team;
         private MovementComponent _movementComponent;
         private Stack<IOrder> _ordersStack;
         private IOrder _currentOrder;
-
         public IGameController GameController => _team.GameController;
+
+        public string CodeName => _codeName;
 
         private void Awake()
         {
@@ -32,6 +35,10 @@ namespace Assets.Scripts.Game.CombatEngine.Implementation
 
         public void OnMoveComponentTargetReached()
         {
+            if(_currentOrder == null)
+            {
+                return;
+            }
             if(_currentOrder.OrderType == OrderType.MoveToLocation)
             {
                 Destroy(((Order)_currentOrder).gameObject);

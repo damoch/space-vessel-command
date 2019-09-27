@@ -11,5 +11,6 @@ namespace Assets.Scripts.Game.CombatEngine.Abstractions
         void OnUnitDeath(IUnit unit);
         bool UnitBelongsToTeam(IUnit unit);
         IGameController GameController { get; }
+        bool SendOrderToUnit(IOrder order, string unitName);
     }
 }

@@ -4,6 +4,7 @@ using Assets.Scripts.Game.Controllers.Abstractions;
 using Assets.Scripts.Game.Controllers.Implementations;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Game.CombatEngine.Implementation
@@ -26,17 +27,18 @@ namespace Assets.Scripts.Game.CombatEngine.Implementation
         private GameController _gameController;
 
         [SerializeField]
-        private Order[] _testOrder;
+        private GameObject _orderInWorldObject;
 
         public TeamCode TeamCode { get => _teamCode; set => _teamCode = value; }
         public string TeamName { get => _teamName; set => _teamName = value; }
         public ITeam[] AlliedTeams { get => _alliedTeams; }
         public IGameController GameController => _gameController;
 
+        public GameObject OrderInWorldObject { get => _orderInWorldObject; set => _orderInWorldObject = value; }
+
         private void Start()
         {
             Initialize();
-            SendOrderToUnit();
         }
 
         private void Initialize()
@@ -57,16 +59,10 @@ namespace Assets.Scripts.Game.CombatEngine.Implementation
            return _units.Contains((Unit)unit);
         }
 
-        public bool ParseOrder()
+        public bool SendOrderToUnit(IOrder order, string unitName)
         {
-            return SendOrderToUnit();
-        }
-
-        private bool SendOrderToUnit()
-        {
-            //order test code
-            _units[0].ReceiveOrder(_testOrder[1]);
-            _units[0].ReceiveOrder(_testOrder[0]);
+            var unit = _units.First(x => x.CodeName == unitName);
+            unit.ReceiveOrder(order);
             return true;
         }
     }

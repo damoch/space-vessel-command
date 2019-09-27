@@ -4,5 +4,6 @@
     {
         void SetUpTeam(ITeam team);
         void ReceiveOrder(IOrder order);
+        string CodeName { get; }
     }
 }

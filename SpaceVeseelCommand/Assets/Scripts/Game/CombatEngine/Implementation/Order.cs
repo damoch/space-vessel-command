@@ -13,6 +13,6 @@ namespace Assets.Scripts.Game.CombatEngine.Implementation
         private Vector2 _target;
 
         public OrderType OrderType { get => _orderType; set => _orderType = value; }
-        public Vector2 Target { get => _target; set => _target = value; }
+        public Vector2 Target { get => _target; set { _target = value; transform.position = value; } }
     }
 }
