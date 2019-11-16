@@ -27,6 +27,9 @@ namespace Assets.Scripts.UI.Implementations
         [SerializeField]
         private HumanPlayer _humanPlayer;
 
+        [SerializeField]
+        private InputField _commandInputField;
+
         public void ChangeGameplayPhaseButtonClick()
         {
             if(_gameController.GameState.GamePlayState == GamePlayState.GamePhase)
@@ -39,10 +42,31 @@ namespace Assets.Scripts.UI.Implementations
             }
         }
 
-        public void OnGameplayPhaseChange(GamePlayState _gameState)
+        public void OnCommandFieldEnterPressed()
         {
-            _gameStateText.text = $"{_gameStatePrefix} {_gameState}";
-            _changeStateButtonText.text = $"{_changeStateButtonPrefix} {(_gameState == GamePlayState.CommandPhase ? GamePlayState.GamePhase : GamePlayState.CommandPhase)}";
+            _humanPlayer.DecodeAndSendOrderToTeam(_commandInputField.text);
         }
+
+        public void OnGameplayPhaseChange(GamePlayState gameState)
+        {
+            switch (gameState)
+            {
+                case GamePlayState.CommandPhase:
+                    _gameStateText.text = $"{_gameStatePrefix} Command";
+                    _changeStateButtonText.text = $"{_changeStateButtonPrefix} Action";
+                    _commandInputField.text = string.Empty;
+                    _commandInputField.gameObject.SetActive(true);
+                    break;
+                case GamePlayState.GamePhase:
+                    _gameStateText.text = $"{_gameStatePrefix} Action";
+                    _changeStateButtonText.text = $"{_changeStateButtonPrefix} Command";
+                    _commandInputField.text = string.Empty;
+                    _commandInputField.gameObject.SetActive(false);
+                    break;
+            }
+
+            //_changeStateButtonText.text = $"{_changeStateButtonPrefix} {(gameState == GamePlayState.CommandPhase ? GamePlayState.GamePhase : GamePlayState.CommandPhase)}";
+        }
+
     }
 }

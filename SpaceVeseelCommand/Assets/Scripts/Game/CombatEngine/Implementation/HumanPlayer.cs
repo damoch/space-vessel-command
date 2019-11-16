@@ -26,7 +26,7 @@ namespace Assets.Scripts.Game.CombatEngine.Implementation
         private void Awake()
         {
             Initialize();
-            DecodeAndSendOrderToTeam("Alpha Zero;move to;0,4");
+            //DecodeAndSendOrderToTeam("Alpha Zero;move to;0,4");
         }
 
         private void Initialize()
